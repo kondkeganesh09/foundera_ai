@@ -1,25 +1,17 @@
-
-
+# Vector Store and Embedding
 faiss-cpu
-
-
-# Core LangChain Community
-langchain-community>=0.1.30
-
-
-# Data handling
-pandas>=2.1.0
-
-# Utilities
-tqdm>=4.65.0
-
-langchain>=0.2.0
-langchain-community>=0.2.0
-langchain-huggingface>=0.0.6
-langchain-chroma>=0.1.2
 chromadb>=0.5.3
+langchain-chroma>=0.1.2
 sentence-transformers>=2.2.2
-torch>=2.0.0
+
+# LLM and Core LangChain
+langchain>=0.2.0
+langchain-community>=0.2.0  # Use the latest requirement for community
+langchain-huggingface>=0.0.6
 transformers>=4.33.0
+torch>=2.0.0
 accelerate>=0.21.0
-langchain-community>=0.2.0
+
+# Data handling and Utilities
+pandas>=2.1.0
+tqdm>=4.65.0
