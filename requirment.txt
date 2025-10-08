@@ -1,4 +1,6 @@
 
+# CRITICAL FIX (MUST BE FIRST)
+pysqlite3-binary
 
 # Core LangChain Libraries (Pinned for stability and clear imports)
 langchain>=0.2.0
@@ -25,5 +27,3 @@ pypdf                        # For loading PDF documents
 langchain-text-splitters     # For splitting documents into chunks
 python-dotenv                # To load the HF_TOKEN from your .env file
 
-# CRITICAL FIX (MUST BE FIRST)
-pysqlite3-binary
