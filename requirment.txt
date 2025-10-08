@@ -1,0 +1,25 @@
+
+
+faiss-cpu
+
+
+# Core LangChain Community
+langchain-community>=0.1.30
+
+
+# Data handling
+pandas>=2.1.0
+
+# Utilities
+tqdm>=4.65.0
+
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-huggingface>=0.0.6
+langchain-chroma>=0.1.2
+chromadb>=0.5.3
+sentence-transformers>=2.2.2
+torch>=2.0.0
+transformers>=4.33.0
+accelerate>=0.21.0
+langchain-community>=0.2.0
