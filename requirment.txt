@@ -1,17 +1,17 @@
-# CRITICAL FIX (MUST BE FIRST)
-pysqlite3-binary
+# Vector Store and Embedding
+faiss-cpu
+sentence-transformers
+langchain-community 
 
-# Core LangChain and Vector Store
+# LLM and Core LangChain
 langchain
 langchain-core
-langchain-community
-langchain-chroma
-chromadb
-
-# LLM and Embeddings
-sentence-transformers
-torch # Keep torch to ensure CUDA/CPU support for embedding models
+langchain-huggingface
+transformers
+torch
+accelerate
 
 # Streamlit and Utilities
 streamlit
 python-dotenv
+# Add back any other utilities like pypdf, pandas, tqdm if needed
