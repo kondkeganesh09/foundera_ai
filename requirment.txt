@@ -1,13 +1,15 @@
-# Core LangChain Libraries (Pinned for stability)
-langchain>=0.2.0
-langchain-core==0.2.14  # Pin a specific, stable version to fix conflicts
-langchain-chroma>=0.1.2 # The module that failed to load
-langchain-community     # Make sure it's here without pinning a new version 
+# CRITICAL FIX (MUST BE FIRST)
+pysqlite3-binary
 
-# Chroma Vector Store Dependencies (Includes SQLite fix)
+# Core LangChain Libraries (Pinned for stability and clear imports)
+langchain>=0.2.0
+langchain-core==0.2.14       # Stable core version to avoid conflicts
+langchain-community          # Needed for compatibility/other components
+
+# Vector Store Dependencies
 chromadb>=0.5.3
-pysqlite3-binary        # Critical fix for Chroma on Streamlit Cloud
-faiss-cpu
+langchain-chroma>=0.1.2      # The package that defines 'Chroma'
+faiss-cpu                    # Used for similarity search if you switch from Chroma
 
 # LLM and Embedding Dependencies
 sentence-transformers>=2.2.2
@@ -16,8 +18,10 @@ transformers>=4.33.0
 torch>=2.0.0
 accelerate>=0.21.0
 
-# Data and Utilities
+# Document Handling and Utilities
+streamlit                    # Your UI framework
 pandas>=2.1.0
 tqdm>=4.65.0
-pypdf
-langchain-text-splitters
+pypdf                        # For loading PDF documents
+langchain-text-splitters     # For splitting documents into chunks
+python-dotenv                # To load the HF_TOKEN from your .env file
