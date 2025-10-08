@@ -1,29 +1,17 @@
-
 # CRITICAL FIX (MUST BE FIRST)
 pysqlite3-binary
 
-# Core LangChain Libraries (Pinned for stability and clear imports)
-langchain>=0.2.0
-langchain-core==0.2.14       # Stable core version to avoid conflicts
-langchain-community          # Needed for compatibility/other components
+# Core LangChain and Vector Store
+langchain
+langchain-core
+langchain-community
+langchain-chroma
+chromadb
 
-# Vector Store Dependencies
-chromadb>=0.5.3
-langchain-chroma>=0.1.2      # The package that defines 'Chroma'
-faiss-cpu                    # Used for similarity search if you switch from Chroma
+# LLM and Embeddings
+sentence-transformers
+torch # Keep torch to ensure CUDA/CPU support for embedding models
 
-# LLM and Embedding Dependencies
-sentence-transformers>=2.2.2
-langchain-huggingface>=0.0.6
-transformers>=4.33.0
-torch>=2.0.0
-accelerate>=0.21.0
-
-# Document Handling and Utilities
-streamlit                    # Your UI framework
-pandas>=2.1.0
-tqdm>=4.65.0
-pypdf                        # For loading PDF documents
-langchain-text-splitters     # For splitting documents into chunks
-python-dotenv                # To load the HF_TOKEN from your .env file
-
+# Streamlit and Utilities
+streamlit
+python-dotenv
