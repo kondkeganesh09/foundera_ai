@@ -1,11 +1,15 @@
-# Vector Store and Embedding
-faiss-cpu
-sentence-transformers
-langchain-community 
-
-# LLM and Core LangChain
+# Core LangChain and Vector Store
 langchain
 langchain-core
+langchain-community
+faiss-cpu # Must be present to use FAISS
+
+# If you had these for Chroma, ensure they are GONE:
+# pysqlite3-binary 
+# chromadb
+# langchain-chroma
+
+# LLM and Core LangChain
 langchain-huggingface
 transformers
 torch
@@ -15,3 +19,4 @@ accelerate
 streamlit
 python-dotenv
 # Add back any other utilities like pypdf, pandas, tqdm if needed
+
