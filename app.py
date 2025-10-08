@@ -1,10 +1,3 @@
-# --- CRITICAL STREAMLIT/CHROMA PATCH ---
-import pysqlite3 # The module name provided by the binary package
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-# --- END PATCH ---
-
-
 import streamlit as st
 import traceback
 from rag_chain import ManualRAG
@@ -25,6 +18,7 @@ def extract_action_points(answer: str):
 # ------------------------
 # Initialize session state
 # ------------------------
+# The ManualRAG class will now need to initialize FAISS or a remote Chroma client.
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 if "qa" not in st.session_state:
@@ -63,11 +57,13 @@ with col1:
         if user_query.strip():
             try:
                 # Prepare chat history as context
+                # NOTE: This history management is basic; for a complex app, use LangChain's ConversationBufferMemory
                 history_context = "\n".join(
                     [f"User: {q}\nAssistant: {a}" for q, a in st.session_state.chat_history]
                 )
                 prompt_with_history = f"{history_context}\nUser: {user_query}\nAssistant:"
 
+                # Assumes ManualRAG is callable and returns a dict with 'result' and 'source_documents'
                 result = st.session_state.qa({"query": prompt_with_history})
                 answer = result.get("result", "")
                 sources = result.get("source_documents", [])
@@ -90,11 +86,16 @@ with col1:
                 if sources:
                     st.subheader("📚 Sources")
                     for idx, doc in enumerate(sources, 1):
+                        # Ensure metadata check for safety
+                        source_info = doc.metadata.get('source', 'Unknown Source')
                         snippet = doc.page_content[:200].replace("\n", " ") + "..."
-                        st.markdown(f"{idx}. **{doc.metadata.get('source','')}** → {snippet}")
+                        st.markdown(f"{idx}. **{source_info}** → {snippet}")
 
             except Exception as e:
                 st.error(f"ERROR: {e}")
+                # Use a specific error message if the Vector Store is the problem
+                if "chroma" in str(e).lower() or "sqlite" in str(e).lower():
+                     st.error("Vector Store Initialization Failed. Ensure ChromaDB dependencies are either removed or replaced with FAISS/Remote Client.")
                 st.text(traceback.format_exc())
         else:
             st.warning("Please enter a query before searching.")
@@ -102,7 +103,8 @@ with col1:
     # Chat history display
     if st.session_state.chat_history:
         st.subheader("📝 Chat History")
-        for i, (q, a) in enumerate(st.session_state.chat_history, 1):
+        # Display history in reverse chronological order (most recent first)
+        for i, (q, a) in enumerate(reversed(st.session_state.chat_history), 1):
             st.markdown(f"**Q{i}:** {q}")
             st.markdown(f"**A{i}:** {a}")
 
@@ -121,7 +123,3 @@ with col2:
 # Footer
 st.markdown("---")
 st.markdown("**Founder AI © 2025** ")
-
-
-
-
