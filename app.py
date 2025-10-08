@@ -1,8 +1,9 @@
 # --- CRITICAL STREAMLIT/CHROMA PATCH ---
-__import__('pysqlite3') 
+import pysqlite3 # The module name provided by the binary package
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # --- END PATCH ---
+
 
 import streamlit as st
 import traceback
@@ -120,6 +121,7 @@ with col2:
 # Footer
 st.markdown("---")
 st.markdown("**Founder AI © 2025** ")
+
 
 
 
