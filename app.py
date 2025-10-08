@@ -1,3 +1,7 @@
+import pysqlite3
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import streamlit as st
 import traceback
 from rag_chain import ManualRAG
@@ -114,3 +118,4 @@ with col2:
 # Footer
 st.markdown("---")
 st.markdown("**Founder AI © 2025** ")
+
