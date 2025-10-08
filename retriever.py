@@ -1,5 +1,5 @@
 # retriever.py
-from langchain_community.vectorstores import FAISS
+from langchain_community.vectorstores.faiss import FAISS
 from config import TOP_K
 # get_embeddings remains the same, assuming it returns the embedding function
 from embeddings import get_embeddings 
@@ -30,3 +30,4 @@ def get_retriever(documents):
 # IMPORTANT: You must update the part of your main application (e.g., app.py 
 # or a rag_chain setup file) that calls this function to handle document 
 # loading and pass the 'documents' list.
+
