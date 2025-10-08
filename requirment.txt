@@ -1,17 +1,24 @@
 # Vector Store and Embedding
-faiss-cpu
 chromadb>=0.5.3
 langchain-chroma>=0.1.2
+pysqlite3-binary          # CRITICAL for ChromaDB on Streamlit Cloud/Linux
 sentence-transformers>=2.2.2
-pysqlite3-binary  # ADDED: Essential for ChromaDB in some cloud environments
+faiss-cpu
+langchain-text-splitters  # Added for chunking documents
 
 # LLM and Core LangChain
 langchain>=0.2.0
-langchain-community>=0.2.0
+langchain-community>=0.2.0  # Still required for many components
+langchain-core              # Added: Essential foundational library for LangChain
 langchain-huggingface>=0.0.6
+
+# Hugging Face Model Dependencies
 transformers>=4.33.0
 torch>=2.0.0
 accelerate>=0.21.0
+
+# Document Loaders (Assuming you need to load files like PDFs)
+pypdf                     # Added: For loading PDF files (common RAG dependency)
 
 # Data handling and Utilities
 pandas>=2.1.0
